@@ -36,6 +36,12 @@ app.use("/api/v1/announcements", announcements);
 app.use("/api/v1/calendars", calendars);
 app.use("/api/v1/prayers", prayers);
 
+app.use(express.static(path.join(__dirname, "client", "build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
+
 // Declare server port
 const port = process.env.PORT;
 
