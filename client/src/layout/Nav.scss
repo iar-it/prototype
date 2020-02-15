@@ -1,0 +1,41 @@
+@import "~@material/animation/functions";
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  //   background-color: black;
+  background-color: #3e2723;
+  color: white;
+  height: 75px;
+  border-bottom: 1px solid #222;
+  transform: translate3d(0, 0, 0);
+  transition: mdc-animation-exit-temporary(transform, 250ms);
+  will-change: transform;
+  z-index: 1;
+
+  &.hidden {
+    transform: translate3d(0, -100%, 0);
+    transition: mdc-animation-enter(transform, 200ms);
+  }
+}
+
+.site-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 15px rgba(55, 84, 170, 0),
+    inset 0 0 20px rgba(255, 255, 255, 0), 7px 7px 15px rgba(55, 84, 170, 0.15),
+    -7px -7px 20px rgba(255, 255, 255, 1),
+    inset 0px 0px 4px rgba(255, 255, 255, 0.2);
+}
+
+.nav-content {
+  display: flex;
+  width: 100%;
+  max-width: 1032px;
+  justify-content: space-between;
+  padding: 20px;
+}
