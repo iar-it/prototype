@@ -55,14 +55,30 @@ const Prayers = ({ store }) => {
 
   const { hijri, adhan, iqamah, day } = state.prayers;
 
-  const prayerNames = ["fajr", "shuruq", "dhuhr", "asr", "maghrib", "isha"];
-
   const TableRows = () => {
+    const prayerNames = ["fajr", "shuruq", "dhuhr", "asr", "maghrib", "isha"];
+
     return prayerNames.map(key => (
       <tr key={key}>
         <th scope="row">{capitalCase(key)}</th>
         <td>{adhan[key]}</td>
         <td>{iqamah[key]}</td>
+      </tr>
+    ));
+  };
+
+  const JumuahRows = () => {
+    const jumuahShifts = [
+      { shift: "1st", khutba: "11:30 AM", salah: "12:00 PM" },
+      { shift: "2nd", khutba: "1:00 PM", salah: "1:30 PM" },
+      { shift: "3rd", khutba: "2:10 PM", salah: "2:40 PM" }
+    ];
+
+    return jumuahShifts.map(jumuah => (
+      <tr key={jumuah.shift}>
+        <th scope="row">{`${jumuah.shift}`}</th>
+        <td>{jumuah.khutba}</td>
+        <td>{jumuah.salah}</td>
       </tr>
     ));
   };
@@ -79,34 +95,6 @@ const Prayers = ({ store }) => {
           اوقات الصلاة&nbsp;
         </h2>
       </div>
-
-      {/* <h2 title="اوقات الصلاة&nbsp;">اوقات الصلاة&nbsp;</h2>
-      <h4>{GregorianDate}</h4>
-      <h4>{HijriDate}</h4> */}
-      {/* <Card className={classes.card}>
-        <CardContent>
-          <h4>{GregorianDate}</h4>
-          <h4>{HijriDate}</h4>
-          <table>
-            <thead>
-              <tr>
-                <th>Prayer</th>
-                <th>Athan</th>
-                <th>Iqamah</th>
-              </tr>
-            </thead>
-            <tbody>
-              <TableRows />
-            </tbody>
-          </table>
-          <IconButton onClick={() => getPrayersPrev(dispatch, day)}>
-            <PrevIcon />
-          </IconButton>
-          <IconButton onClick={() => getPrayersNext(dispatch, day)}>
-            <NextIcon />
-          </IconButton>
-        </CardContent>
-      </Card>*/}
       <NeoWrap className="row justify-content-between">
         <div className="col-sm-6 col-md-12 col-lg-12 py-3">
           <NeoBox>
@@ -138,19 +126,18 @@ const Prayers = ({ store }) => {
         </div>
         <div className="col-sm-6 col-md-12 col-lg-12 py-3">
           <NeoBox>
-            <NeoHeader>{GregorianDate}</NeoHeader>
-            <NeoHeader>{HijriDate}</NeoHeader>
+            <NeoHeader>Friday Prayer Schedule</NeoHeader>
             <PrayerTable>
-              <table>
+              <table className="table table-sm">
                 <thead>
                   <tr>
-                    <th>Prayer</th>
-                    <th>Athan</th>
-                    <th>Iqamah</th>
+                    <th scope="col">Shift</th>
+                    <th scope="col">Khutba</th>
+                    <th scope="col">Salah</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <TableRows />
+                  <JumuahRows />
                 </tbody>
               </table>
             </PrayerTable>

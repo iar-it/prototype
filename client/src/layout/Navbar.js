@@ -10,13 +10,11 @@ import {
   throttleTime
 } from "rxjs/operators";
 import { useObservable } from "rxjs-hooks";
-import logo from "../img/logo.png";
+import logo from "../assets/img/logo.png";
 import styled from "styled-components";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-// import Sidebar from "../sidebar/Sidebar";
-import { makeStyles } from "@material-ui/core/styles";
 
 import "./Nav.scss";
 const watchScroll = () =>
@@ -46,9 +44,10 @@ function Nav() {
 
     setState({ ...state, [side]: open });
   };
+  //     <header className={`site-header ${scrollDirection === "Down" && "hidden"}`}>
 
   return (
-    <header className={`site-header ${scrollDirection === "Down" && "hidden"}`}>
+    <header className={`site-header`}>
       <div className="nav-content">
         <a href="/">
           <Logo src={logo}></Logo>

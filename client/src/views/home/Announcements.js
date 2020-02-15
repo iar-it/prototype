@@ -4,16 +4,9 @@ import styled from "styled-components";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles({
-  card: {
-    // padding: 10,
-    // margin: 10
-  }
-});
+import ContentCard from "../components/ContentCard";
 
 const Announcements = ({ store }) => {
-  const classes = useStyles();
   const { state, dispatch } = React.useContext(store);
 
   React.useEffect(() => {
@@ -32,11 +25,11 @@ const Announcements = ({ store }) => {
 
   const announcements = state.announcements;
 
-  const List = () =>
+  const AnnouncementList = () =>
     announcements.map(item => {
       const { entry_title, entry_id, entry_excerpt } = item;
       return (
-        <Card className={classes.card}>
+        <ContentCard>
           <CardContent>
             <Item key={entry_id}>
               <Title>{entry_title}</Title>
@@ -47,9 +40,26 @@ const Announcements = ({ store }) => {
               ></Excerpt>
             </Item>
           </CardContent>
-        </Card>
+        </ContentCard>
       );
     });
+  const AnnouncementSlider = styled.div`
+  @media only screen and (max-width: 768px) {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(${state.announcements.length}, minmax(200px, 500px));    
+    grid-template-rows: 1fr;
+    overflow-x: scroll;
+    scroll-snap-type: x proximity;
+    padding-bottom: calc(.75 * 20px);
+    margin-bottom: calc(-.25 * 20px);
+    list-style: none;
+    padding: 0;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar
+        display: none;
+    }
+`;
 
   return (
     <div className="container-fluid">
@@ -59,7 +69,9 @@ const Announcements = ({ store }) => {
           الإعلانات&nbsp;
         </h2>
       </div>
-      <List />
+      <AnnouncementSlider>
+        <AnnouncementList />
+      </AnnouncementSlider>
     </div>
   );
 };
