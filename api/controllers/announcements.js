@@ -1,4 +1,5 @@
 const asyncHandler = require("../middleware/async");
+const parse5 = require("parse5");
 const mysqlssh = require("mysql-ssh");
 const { sshConfig, dbConfig } = require("../config/mysql");
 
@@ -64,3 +65,61 @@ exports.getAnnouncement = asyncHandler(async (req, res, next) => {
 // @route     GET /api/v1/announcements/special
 // @access    Public
 exports.getSpecialAnnouncement = asyncHandler(async (req, res, next) => {});
+
+// @desc      Get announcements for the last month
+// @route     GET /api/v1/announcements
+// @access    Public
+exports.getAnnouncementsParsed = asyncHandler(async (req, res, next) => {
+  await mysqlssh
+    .connect(sshConfig, dbConfig)
+    .then(client => {
+      client.query(
+        // SELECT * FROM movabletype.mt_entry WHERE entry_class='page';
+        // `SELECT entry_id, entry_modified_on, entry_title, entry_excerpt FROM mt_entry WHERE entry_class='entry' ORDER BY entry_modified_on DESC;`,
+        "SELECT entry_id, entry_modified_on, entry_title, entry_excerpt FROM mt_entry WHERE entry_class='entry' ORDER BY entry_modified_on DESC LIMIT 30;",
+        function(err, results, fields) {
+          if (err) throw err;
+          mysqlssh.close();
+          const getCircularReplacer = () => {
+            const seen = new WeakSet();
+            return (key, value) => {
+              if (typeof value === "object" && value !== null) {
+                if (seen.has(value)) {
+                  return;
+                }
+                seen.add(value);
+              }
+              return value;
+            };
+          };
+
+          results.map(result => {
+            if (result.entry_excerpt) {
+              const doc = parse5.parse(result.entry_excerpt);
+              const html = parse5.serialize(doc.childNodes[0].childNodes[1]);
+              const doc2 = parse5.parse(html);
+
+              const stringified = JSON.stringify(doc2, getCircularReplacer());
+
+              result.serialHtml = html;
+              // result.parsedHtml = JSON.parse(stringified);
+              result.parsedHtml = stringified;
+
+              return result;
+              // return (result.html = document);
+            }
+          });
+
+          res.status(200).json({
+            success: true,
+            announcements: results
+          });
+        }
+      );
+    })
+    .catch(err => {
+      return next(
+        new ErrorResponse(`Announcements Error: ${err.message}`, 404)
+      );
+    });
+});

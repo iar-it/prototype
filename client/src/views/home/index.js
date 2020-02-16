@@ -2,7 +2,6 @@ import Announcements from "../home/Announcements";
 import Prayers from "../home/Prayers";
 import styled from "styled-components";
 import React from "react";
-import CardComponent from "../xd/CardComponent";
 
 export const Home = ({ store }) => {
   const globalState = React.useContext(store);

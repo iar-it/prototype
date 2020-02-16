@@ -1,10 +1,9 @@
 import React from "react";
 import { getAnnouncements } from "../../services/actions/Announcements";
 import styled from "styled-components";
-import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import { makeStyles } from "@material-ui/core/styles";
 import ContentCard from "../components/ContentCard";
+const parse5 = require("parse5");
 
 const Announcements = ({ store }) => {
   const { state, dispatch } = React.useContext(store);
@@ -27,7 +26,23 @@ const Announcements = ({ store }) => {
 
   const AnnouncementList = () =>
     announcements.map(item => {
-      const { entry_title, entry_id, entry_excerpt } = item;
+      const {
+        entry_title,
+        entry_id,
+        entry_excerpt,
+        serialHtml,
+        parsedHtml
+      } = item;
+      console.log(JSON.parse(parsedHtml));
+
+      const before = new RegExp('src="/', "gi");
+      const after = 'src="https://raleighmasjid.org/';
+      const newHtml = serialHtml.replace(before, after);
+      console.log(newHtml);
+
+      // const doc = parse5.serialize(JSON.parse(newHtml));
+      // console.log(doc);
+
       return (
         <ContentCard>
           <CardContent>
@@ -35,7 +50,7 @@ const Announcements = ({ store }) => {
               <Title>{entry_title}</Title>
               <Excerpt
                 dangerouslySetInnerHTML={{
-                  __html: entry_excerpt
+                  __html: newHtml
                 }}
               ></Excerpt>
             </Item>
