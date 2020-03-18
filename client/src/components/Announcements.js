@@ -35,7 +35,6 @@ const Announcements = ({ store }) => {
         parsedHtml,
         parsedHtmlNoImg
       } = item;
-      console.log(JSON.parse(parsedHtmlNoImg));
 
       const before = new RegExp('src="/', "gi");
       const after = 'src="https://raleighmasjid.org/';
