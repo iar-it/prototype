@@ -3,7 +3,7 @@ import {
   getPrayers,
   getPrayersNext,
   getPrayersPrev
-} from "../../services/actions/Prayers";
+} from "../services/actions/Prayers";
 import { capitalCase } from "change-case";
 import moment from "moment";
 import {
@@ -152,32 +152,12 @@ const Prayers = ({ store }) => {
   );
 };
 
-// width: 315px;
-// height: 315px;
-// background: transparent;
-// width: 315px;
-// height: 315px;
-// background: #fff9e6;
-// box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.8);
-// width: 315px;
-// height: 315px;
-// background: #fff9e6;
-// box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
-
 const NeoWrap = styled.div`
   background-color: #fff9e6;
   position: relative;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1),
     -5px -5px 15px rgba(255, 255, 255, 0.8);
-  ${"" /* box-shadow: 9px 9px 16px rgb(234, 207, 164, 0.2),
-    -9px -9px 16px rgba(255, 255, 255, 0.5); */}
   border-radius: 5px;
-  ${"" /* @media only screen and (max-width: 768px) {
-    display: flex;
-  }
-  @media only screen and (max-width: 550px) {
-    display: block;
-  } */}
 `;
 
 const PrayerTable = styled.div`
@@ -191,17 +171,10 @@ const PrayerActions = styled.div`
 const NeoBox = styled.div`
   display: flex;
   flex-direction: column;
-  ${"" /* border: 4px solid #fbf4e8; */}
-  ${"" /* border: 4px solid #f1f3f6; */}
   background-color: #fff9e6;
-  ${"" /* box-shadow: 9px 9px 16px rgb(241, 243, 246, 0.6),
-    -9px -9px 16px rgba(255, 255, 255, 0.5); */}
   box-shadow: 9px 9px 16px rgb(234, 207, 164, 0.2),
     -9px -9px 16px rgba(255, 255, 255, 0.5);
-  ${"" /* box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1),
-    -5px -5px 15px rgba(255, 255, 255, 0.8); */}
   border-radius: 5px;
-  ${"" /* max-width: 250px; */}
 `;
 
 const NeoHeader = styled.h1`

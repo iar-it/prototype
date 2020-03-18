@@ -1,8 +1,8 @@
 import React from "react";
-import { getAnnouncements } from "../../services/actions/Announcements";
+import { getAnnouncements } from "../services/actions/Announcements";
 import styled from "styled-components";
-import CardContent from "@material-ui/core/CardContent";
-import ContentCard from "../components/ContentCard";
+import { CardContent, Box } from "@material-ui/core";
+import ContentCard from "./ContentCard";
 const parse5 = require("parse5");
 
 const Announcements = ({ store }) => {
@@ -31,14 +31,16 @@ const Announcements = ({ store }) => {
         entry_id,
         entry_excerpt,
         serialHtml,
-        parsedHtml
+        serialHtml2,
+        parsedHtml,
+        parsedHtmlNoImg
       } = item;
-      console.log(JSON.parse(parsedHtml));
+      console.log(JSON.parse(parsedHtmlNoImg));
 
       const before = new RegExp('src="/', "gi");
       const after = 'src="https://raleighmasjid.org/';
-      const newHtml = serialHtml.replace(before, after);
-      console.log(newHtml);
+      const newHtml = serialHtml2.replace(before, after);
+      // console.log(newHtml);
 
       // const doc = parse5.serialize(JSON.parse(newHtml));
       // console.log(doc);
@@ -48,6 +50,7 @@ const Announcements = ({ store }) => {
           <CardContent>
             <Item key={entry_id}>
               <Title>{entry_title}</Title>
+              {/* <Excerpt>{newHtml}</Excerpt> */}
               <Excerpt
                 dangerouslySetInnerHTML={{
                   __html: newHtml
@@ -62,7 +65,7 @@ const Announcements = ({ store }) => {
   @media only screen and (max-width: 768px) {
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: repeat(${state.announcements.length}, minmax(200px, 500px));    
+    grid-template-columns: repeat(${state.announcements.length}, minmax(200px, 500px));
     grid-template-rows: 1fr;
     overflow-x: scroll;
     scroll-snap-type: x proximity;
@@ -109,6 +112,7 @@ const Excerpt = styled.span`
   font-size: 0.8rem;
   font-weight: 300;
   margin-bottom: 10px;
+  overflow-y: scroll;
 `;
 
 export default Announcements;

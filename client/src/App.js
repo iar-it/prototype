@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { store } from "./store.js";
-import { Home } from "./views/home/";
+import { Main } from "./views/Main";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Navbar from "./layout/Navbar";
 
@@ -13,7 +13,7 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/">
-              <Home store={store} />
+              <Main store={store} />
             </Route>
           </Switch>
         </Router>

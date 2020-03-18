@@ -93,6 +93,22 @@ exports.getAnnouncementsParsed = asyncHandler(async (req, res, next) => {
             };
           };
 
+          const getCircularReplacerImg = () => {
+            const seen = new WeakSet();
+            return (key, value) => {
+              if (typeof value === "object" && value !== null) {
+                if (value.tagName === "img") {
+                  return {};
+                }
+                if (seen.has(value)) {
+                  return;
+                }
+                seen.add(value);
+              }
+              return value;
+            };
+          };
+
           results.map(result => {
             if (result.entry_excerpt) {
               const doc = parse5.parse(result.entry_excerpt);
@@ -100,13 +116,19 @@ exports.getAnnouncementsParsed = asyncHandler(async (req, res, next) => {
               const doc2 = parse5.parse(html);
 
               const stringified = JSON.stringify(doc2, getCircularReplacer());
+              const stringifiedNoImg = JSON.stringify(
+                doc2,
+                getCircularReplacerImg()
+              );
+
+              const html2 = parse5.serialize(JSON.parse(stringifiedNoImg));
 
               result.serialHtml = html;
-              // result.parsedHtml = JSON.parse(stringified);
               result.parsedHtml = stringified;
+              result.serialHtml2 = html2;
+              result.parsedHtmlNoImg = stringifiedNoImg;
 
               return result;
-              // return (result.html = document);
             }
           });
 
