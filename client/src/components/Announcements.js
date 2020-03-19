@@ -46,7 +46,7 @@ const Announcements = ({ store }) => {
               {/* <Excerpt>{newHtml}</Excerpt> */}
               <Excerpt
                 dangerouslySetInnerHTML={{
-                  __html: serialHtml2
+                  __html: parsedHtmlNoImg
                 }}
               ></Excerpt>
             </Item>
