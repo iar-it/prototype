@@ -1,24 +1,19 @@
-@use "@material/animation";
-
 .site-header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  //   background-color: black;
   background-color: #3e2723;
   color: white;
   height: 75px;
   border-bottom: 1px solid #222;
   transform: translate3d(0, 0, 0);
-  // transition: mdc-animation-exit-temporary(transform, 250ms);
   will-change: transform;
   z-index: 1;
+}
 
-  &.hidden {
-    transform: translate3d(0, -100%, 0);
-    // transition: mdc-animation-enter(transform, 200ms);
-  }
+.site-header .hidden {
+  transform: translate3d(0, -100%, 0);
 }
 
 .site-header {
