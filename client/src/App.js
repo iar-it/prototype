@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { store } from "./store.js";
 import { Main } from "./views/Main";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./layout/Navbar";
 
 function App() {

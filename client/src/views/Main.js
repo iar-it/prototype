@@ -4,8 +4,6 @@ import styled from "styled-components";
 import React from "react";
 
 export const Main = ({ store }) => {
-  const globalState = React.useContext(store);
-
   return (
     <ContentWrapper>
       <Content>
@@ -21,11 +19,13 @@ export const Main = ({ store }) => {
 };
 
 const ContentWrapper = styled.div`
+  @media only screen and (max-width: 768px) {
+    margin: 0;
+  }
   display: block;
   max-width: 1032px;
   ${"" /* max-width: 724px; */}
   margin: 75px auto;
-  ${"" /* margin: 25px 50px 75px 100px; */}
 `;
 
 const Content = styled.div`

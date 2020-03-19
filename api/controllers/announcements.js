@@ -111,19 +111,23 @@ exports.getAnnouncementsParsed = asyncHandler(async (req, res, next) => {
 
           results.map(result => {
             if (result.entry_excerpt) {
-              const doc = parse5.parse(result.entry_excerpt);
-              const html = parse5.serialize(doc.childNodes[0].childNodes[1]);
-              const doc2 = parse5.parse(html);
+              const doc = parse5.parse(result.entry_excerpt).childNodes[0]
+                .childNodes[1];
+              const docSerialized = parse5.serialize(doc);
+              const docParsed = parse5.parse(docSerialized);
 
-              const stringified = JSON.stringify(doc2, getCircularReplacer());
+              const stringified = JSON.stringify(
+                docParsed,
+                getCircularReplacer()
+              );
               const stringifiedNoImg = JSON.stringify(
-                doc2,
+                docParsed.childNodes[0].childNodes[1],
                 getCircularReplacerImg()
               );
 
               const html2 = parse5.serialize(JSON.parse(stringifiedNoImg));
 
-              result.serialHtml = html;
+              result.serialHtml = docSerialized;
               result.parsedHtml = stringified;
               result.serialHtml2 = html2;
               result.parsedHtmlNoImg = stringifiedNoImg;

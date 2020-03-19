@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React from "react";
 import moment from "moment";
 
 const dayStart = moment()
@@ -34,7 +34,7 @@ const initialState = {
   },
   calendars: {}
 };
-export const store = createContext();
+export const store = React.createContext();
 const { Provider } = store;
 
 // Reducer Function

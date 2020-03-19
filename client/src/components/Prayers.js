@@ -148,6 +148,12 @@ const Prayers = ({ store }) => {
   );
 };
 
+// Light color: fbf4e8
+// Mid (main) color: f7e9d0
+// Dark color: f3deb9
+
+export default Prayers;
+
 const NeoWrap = styled.div`
   background-color: #fff9e6;
   position: relative;
@@ -178,9 +184,3 @@ const NeoHeader = styled.h1`
   font-size: 1rem;
   margin: 0;
 `;
-
-// Light color: fbf4e8
-// Mid (main) color: f7e9d0
-// Dark color: f3deb9
-
-export default Prayers;

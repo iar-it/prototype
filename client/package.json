@@ -11,6 +11,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "change-case": "^4.1.1",
+    "html-react-parser": "^0.10.2",
     "html-to-react": "^1.4.2",
     "htmlparser2": "^4.1.0",
     "markdown-to-jsx": "^6.11.0",

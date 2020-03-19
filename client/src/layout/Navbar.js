@@ -52,7 +52,7 @@ function Nav() {
         <a href="/">
           <Logo src={logo}></Logo>
         </a>
-        <IconButton
+        {/* <IconButton
           color="inherit"
           aria-label="Menu"
           onClick={toggleDrawer("right", true)}
@@ -70,10 +70,10 @@ function Nav() {
             role="button"
             onClick={toggleDrawer("right", true)}
             onKeyDown={toggleDrawer("right", true)}
-          >
-            {/* <Sidebar /> */}
-          </div>
-        </SwipeableDrawer>
+          > */}
+        {/* <Sidebar /> */}
+        {/* </div>
+        </SwipeableDrawer> */}
       </div>
 
       {/* <span>Header</span> */}
