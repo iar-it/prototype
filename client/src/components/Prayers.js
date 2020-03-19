@@ -43,15 +43,11 @@ const Prayers = ({ store }) => {
     const prayers = async () => {
       try {
         await getPrayers(dispatch);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
 
     prayers();
   }, []);
-
-  console.log(state.prayers);
 
   const { hijri, adhan, iqamah, day } = state.prayers;
 

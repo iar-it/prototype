@@ -12,15 +12,11 @@ const Announcements = ({ store }) => {
     const announcements = async () => {
       try {
         await getAnnouncements(dispatch);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
 
     announcements();
   }, []);
-
-  console.log(state.announcements);
 
   const announcements = state.announcements;
 
@@ -39,10 +35,8 @@ const Announcements = ({ store }) => {
       // const before = new RegExp('src="/', "gi");
       // const after = 'src="https://raleighmasjid.org/';
       // const newHtml = parsedHtml.replace(before, after);
-      // console.log(newHtml);
 
       // const doc = parse5.serialize(JSON.parse(newHtml));
-      // console.log(doc);
 
       return (
         <ContentCard>
