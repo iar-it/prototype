@@ -25,11 +25,11 @@ const Announcements = ({ store }) => {
       const {
         entry_title,
         entry_id,
-        entry_excerpt,
-        serialHtml,
-        serialHtml2,
-        parsedHtml,
-        parsedHtmlNoImg
+        // entry_excerpt,
+        // serialHtml,
+        serialHtml2
+        // parsedHtml,
+        // parsedHtmlNoImg
       } = item;
 
       // const before = new RegExp('src="/', "gi");
@@ -46,7 +46,7 @@ const Announcements = ({ store }) => {
               {/* <Excerpt>{newHtml}</Excerpt> */}
               <Excerpt
                 dangerouslySetInnerHTML={{
-                  __html: parsedHtmlNoImg
+                  __html: serialHtml2
                 }}
               ></Excerpt>
             </Item>
