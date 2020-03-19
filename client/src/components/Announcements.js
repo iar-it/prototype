@@ -36,9 +36,9 @@ const Announcements = ({ store }) => {
         parsedHtmlNoImg
       } = item;
 
-      const before = new RegExp('src="/', "gi");
-      const after = 'src="https://raleighmasjid.org/';
-      const newHtml = serialHtml2.replace(before, after);
+      // const before = new RegExp('src="/', "gi");
+      // const after = 'src="https://raleighmasjid.org/';
+      // const newHtml = parsedHtml.replace(before, after);
       // console.log(newHtml);
 
       // const doc = parse5.serialize(JSON.parse(newHtml));
@@ -52,7 +52,7 @@ const Announcements = ({ store }) => {
               {/* <Excerpt>{newHtml}</Excerpt> */}
               <Excerpt
                 dangerouslySetInnerHTML={{
-                  __html: newHtml
+                  __html: serialHtml2
                 }}
               ></Excerpt>
             </Item>
