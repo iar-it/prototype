@@ -24,8 +24,7 @@ const ContentWrapper = styled.div`
   }
   display: block;
   max-width: 1032px;
-  ${"" /* max-width: 724px; */}
-  margin: 75px auto;
+  ${"" /* margin: 75px auto; */}
 `;
 
 const Content = styled.div`
@@ -34,7 +33,6 @@ const Content = styled.div`
   }
 
   display: flex;
-  ${"" /* background-color: #fff9e6; */}
   justify-content: space-between;
   width: 100%;
 `;
@@ -42,7 +40,6 @@ const Content = styled.div`
 const AnnouncementWrap = styled.div`
   order: 1;
   padding: 15px;
-  ${"" /* min-height: 150vh; */}
   width: 100%;
   max-width: 700px;
 `;
@@ -53,6 +50,7 @@ const PrayerWrap = styled.div`
   min-width: 300px;
   top: 0;
   right: 0;
+  overflow-x: scroll;
   @media only screen and (min-width: 768px) {
     width: 300px;
     height: 100%;
