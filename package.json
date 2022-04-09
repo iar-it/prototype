@@ -12,7 +12,7 @@
     "fast-xml-parser": "^3.16.0",
     "googleapis": "^45.0.0",
     "lowercase-keys": "^2.0.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "mysql": "^2.18.1",
     "mysql-ssh": "^1.0.6",
     "nodemon": "^2.0.1",
